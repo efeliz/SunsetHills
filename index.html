@@ -12,14 +12,13 @@
         </div>
 
         <div id="sceneView">
-            <div class="buildingContainer">
-                <img src="assets/building_parts/red-bottom.png" />
-            </div>
-            <div class="buildingContainer">
-                <img src="assets/building_parts/red-bottom.png" />
-            </div>
             <div id="groundPart"></div>
         </div>
+
+        <template id="buildingTemplate">
+            <div id="buildingContainer" class="buildingContainer" data-buildingID="" data-buildingHeight="">
+            </div>
+        </template>
 
         <script src="scripts/buildingLogic.js"></script>
     </body>
