@@ -56,12 +56,14 @@ startProcess = () => {
 generateScene = (buildingProps) => {
     // var generatedBuildings = [];
     let buildingSpace = 50;
+    let partHeight = 200;
     let buildingWidth = 250;
     
     var xPos = 0;
 
     for (b=0; b < buildingProps.length; b++){
         let buildingHeight = buildingProps[b];
+        let buildingContainerHeight = buildingHeight * (partHeight);
         xPos += buildingSpace;
 
         // create a building with template and insert into sceneView before end
@@ -71,6 +73,7 @@ generateScene = (buildingProps) => {
         building.setAttribute("data-buildingID", b);
         building.setAttribute("data-buildingHeight", buildingHeight);
         building.style.left = `${xPos}px`;
+        building.style.height = `${buildingContainerHeight}px`;
 
         var buildingPart = document.createElement("div");
         buildingPart.setAttribute("class", "building-part");
@@ -99,9 +102,14 @@ generateScene = (buildingProps) => {
         building.insertAdjacentElement("beforeend", buildingPart);
 
         xPos += buildingWidth;
+
         let sceneContainer = document.querySelector("#sceneView");
-        sceneContainer.insertAdjacentElement("beforeend", building);
+        sceneContainer.insertAdjacentElement("afterbegin", building);
     }
+    let sceneWidth = document.querySelector("#sceneView").scrollWidth;
+    let sceneHeight = document.querySelector("#sceneView").scrollHeight;
+    document.querySelector("#groundPart").style.top = `${sceneHeight}px`;
+    document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
 }
 
 let heights = [5, 2, 3, 6, 1];
