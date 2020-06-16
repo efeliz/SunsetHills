@@ -4,9 +4,10 @@
     /* GLOBAL CSS PROPS */
 
     --navbar-color: #2e3131;
-    
 
-    --scene-height: 400px;
+    --scene-height: 500px;
+
+    --building-part-height: 200px;
 
     --ground-height: 20px;
     --ground-color: #34495E;
@@ -46,6 +47,12 @@ html, body {
 
     overflow-x: scroll;
     overflow-y: scroll;
+}
+
+#sceneView .buildingContainer {
+    position: absolute;
+    bottom: var(--ground-height);
+    height: var(--building-part-height);
 }
 
 #sceneView #groundPart {
