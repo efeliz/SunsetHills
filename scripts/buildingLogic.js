@@ -54,10 +54,9 @@ startProcess = () => {
 }
 
 generateScene = (buildingProps) => {
-    var generatedBuildings = [];
+    // var generatedBuildings = [];
     let buildingSpace = 50;
     let buildingWidth = 250;
-    let buildingPartHeight = 200;
     
     var xPos = 0;
 
