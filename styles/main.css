@@ -7,12 +7,15 @@
     
 
     --scene-height: 400px;
+
+    --ground-height: 20px;
+    --ground-color: #34495E;
 }
 
 html, body {
     margin: 0;
     padding: 0;
-    
+
     overflow-x: hidden;
     
     font-family: "Rajdhani", sans-serif;
@@ -36,10 +39,20 @@ html, body {
 }
 
 #sceneView {
+    position: relative;
     background-color: paleturquoise;
     height: var(--scene-height);
     width: 100%;
 
     overflow-x: scroll;
     overflow-y: scroll;
+}
+
+#sceneView #groundPart {
+    width: 100%;
+    height: var(--ground-height);
+    position: absolute;
+    bottom: 0;
+
+    background-color: var(--ground-color);
 }
