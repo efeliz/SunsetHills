@@ -4,6 +4,7 @@
     /* GLOBAL CSS PROPS */
 
     --navbar-color: #2e3131;
+    --navbar-opacity: 100%;
 
     --scene-height: 500px;
 
@@ -25,6 +26,7 @@ html, body {
 
 #navbar {
     background-color: var(--navbar-color);
+    opacity: var(--navbar-opacity);
     width: 100%;
     height: 3rem;
     padding: 0.5rem 1rem;
