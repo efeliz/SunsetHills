@@ -62,6 +62,10 @@ html, body {
     width: var(--building-part-width);
 }
 
+.buildingContainer .building-part #building-roof{
+    transform: translate(-20px, calc(var(--building-part-height) - 38px));
+}
+
 #sceneView #groundPart {
     width: 100%;
     height: var(--ground-height);
