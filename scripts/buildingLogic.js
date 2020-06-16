@@ -15,12 +15,12 @@ findVisibleBuildings = (buildings) => {
     }
 
     for (var b=0; b < buildings.length; b++){
+        let building = buildings[b];
         for (var v = 0; v < sunset_visible.length; v++){
-            if (buildings[b] > sunset_visible[v]){
-                if (buildings[b] > tallest){
-                    sunset_visible.push(buildings[b]);
-                    tallest = buildings[b];
-                }
+            let visible = sunset_visible[v];
+            if ((building > visible) && (building > tallest)){
+                sunset_visible.push(building);
+                tallest = building;
             }
         }
     }
