@@ -114,11 +114,12 @@ generateScene = (buildingProps) => {
 
     let foundBuildings = document.querySelectorAll(".buildingContainer");
     let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect();
-    console.log(foundBuildings);
+    // console.log(foundBuildings);
     foundBuildings.forEach(bldg => {
         bldg.style.bottom = `-${(groundTopPosition.top / 2) - 115}px`;
     });
 
+    document.querySelector("#sceneView").scrollTo({top: sceneHeight});
 }
 
 let heights = [5, 2, 3, 6, 1];
