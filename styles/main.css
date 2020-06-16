@@ -18,8 +18,9 @@
 html, body {
     margin: 0;
     padding: 0;
+    max-width: 100vw;
 
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     
     font-family: "Rajdhani", sans-serif;
 }
@@ -27,7 +28,7 @@ html, body {
 #navbar {
     background-color: var(--navbar-color);
     opacity: var(--navbar-opacity);
-    width: 100%;
+    max-width: 100vw;
     height: 3rem;
     padding: 0.5rem 1rem;
 }
@@ -42,6 +43,7 @@ html, body {
     
 }
 
+/* SCENE VIEW */
 #sceneView {
     position: relative;
     background-color: paleturquoise;
@@ -80,3 +82,23 @@ html, body {
 
     background-color: var(--ground-color);
 }
+/* SCENE VIEW */
+
+/* PANELS */
+#panels-container {
+    width: 100%;
+    min-height: 100px;
+
+    margin-top: 1rem;
+
+    display: grid;
+
+    grid-template-columns: auto;
+}
+
+#panels-container .panel {
+    background-color: goldenrod;
+    width: 100%;
+    height: 100%;
+}
+/* PANELS */
