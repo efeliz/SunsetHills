@@ -52,9 +52,16 @@ html, body {
     overflow-y: scroll;
 }
 
+#sceneView #heightDefiner {
+    background-color: var(--navbar-color);
+    height: 10px;
+    width: 0;
+    visibility: hidden;
+}
+
 #sceneView .buildingContainer {
     position: absolute;
-    bottom: var(--ground-height);
+    /* bottom: var(--ground-height); */
 }
 
 .buildingContainer .building-part {

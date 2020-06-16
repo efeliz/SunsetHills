@@ -106,10 +106,19 @@ generateScene = (buildingProps) => {
         let sceneContainer = document.querySelector("#sceneView");
         sceneContainer.insertAdjacentElement("afterbegin", building);
     }
+    document.querySelector("#heightDefiner").style.height = `1500px`;
     let sceneWidth = document.querySelector("#sceneView").scrollWidth;
     let sceneHeight = document.querySelector("#sceneView").scrollHeight;
     document.querySelector("#groundPart").style.top = `${sceneHeight}px`;
     document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
+
+    let foundBuildings = document.querySelectorAll(".buildingContainer");
+    let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect();
+    console.log(foundBuildings);
+    foundBuildings.forEach(bldg => {
+        bldg.style.bottom = `-${(groundTopPosition.top / 2) - 115}px`;
+    });
+
 }
 
 let heights = [5, 2, 3, 6, 1];
