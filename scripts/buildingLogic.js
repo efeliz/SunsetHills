@@ -1,18 +1,26 @@
-// var buildings = [];
-// var sunset_visible = [];
-// var tallest = 0;
-
-
 // sample: 1, 2, 6, 3, 4, 7, 8, 10
+
+class building {
+    constructor(props) {
+        this.type = props.type;
+        this.height = props.height;
+        this.color = props.color;
+        this.sunsetVisible = props.sunsetVisible != null ? props.sunsetVisible : false;
+    }
+}
 
 let partHeight = 200;
 
 // Scene Props & Values:
+var buildings = [];
 var buildingSpace = 50;
 var buildingWidth = 250;
 
 // Building Editor Props:
 const MAX_PREVIEW_HEIGHT = 3;
+const DEFAULT_BUILDING_INDEX = 0;
+const DEFAULT_BUILDING_COLOR = 0;
+const DEFAULT_BUILDING_HEIGHT = 2;
 
 var buildingEditor = {
     availableBuildings: [
@@ -43,9 +51,9 @@ var buildingEditor = {
             ]
         }
     ],
-    selectedBuildingIndex: 0,
-    selectedColorIndex: 0,
-    buildingHeight: 2
+    selectedBuildingIndex: DEFAULT_BUILDING_INDEX,
+    selectedColorIndex: DEFAULT_BUILDING_COLOR,
+    buildingHeight: DEFAULT_BUILDING_HEIGHT
 };
 
 findVisibleBuildings = (buildings) => {
@@ -190,9 +198,6 @@ generateScene = (buildingProps) => {
     document.querySelector("#sceneView").scrollTo({top: sceneHeight});
 }
 
-// let heights = [5, 2, 3, 6, 1];
-// generateScene(heights);
-
 let initialize = () => {
     setEditorUI();
 }
@@ -288,7 +293,23 @@ let buildingColorChanged = (element) => {
 }
 
 let updateBuildingHeight = (newVal) => {
-    buildingEditor.buildingHeight = newVal;
+    buildingEditor.buildingHeight = parseInt(newVal);
+    setEditorUI();
+}
+
+let addBuildingToScene = () => {
+    let newBuilding = new building({
+        type: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].title.toLowerCase(),
+        height: buildingEditor.buildingHeight,
+        color: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].colors[buildingEditor.selectedColorIndex].prefix
+    });
+    buildings.push(newBuilding);
+    
+    // reset values
+    buildingEditor.selectedBuildingIndex = DEFAULT_BUILDING_INDEX;
+    buildingEditor.selectedColorIndex = DEFAULT_BUILDING_COLOR;
+    buildingEditor.buildingHeight = DEFAULT_BUILDING_HEIGHT;
+
     setEditorUI();
 }
 
