@@ -119,7 +119,7 @@ startProcess = () => {
 generateBuilding = (params) => {
     /*
 
-        params: id, height, type, color, xPos (optional), maxheight (optional)
+        params: id, height, type, color, sunsetVisible, xPos (optional), maxheight (optional)
 
         asset file-naming: type-color-part.png
 
@@ -129,6 +129,7 @@ generateBuilding = (params) => {
     let buildingHeight = params.height;
     let buildingType = params.type.toLowerCase();
     let buildingColor = params.color;
+    let buildingVisible = params.sunsetVisible != null ? params.sunsetVisible : false;
 
     let containerHeight = buildingHeight * (partHeight);
     if (params.maxHeight && ( buildingHeight > params.maxHeight)){
@@ -142,6 +143,7 @@ generateBuilding = (params) => {
     
     building.setAttribute("data-buildingID", params.id);
     building.setAttribute("data-buildingHeight", params.height);
+    building.setAttribute("data-sunsetVisible", buildingVisible);
     if (params.xPos){
         building.style.left = `${params.xPos}px`;
     }
@@ -204,7 +206,8 @@ updateSceneUI = (sceneBuildings) => {
                 type: processedBuildings[b].type,
                 height: processedBuildings[b].height,
                 color: processedBuildings[b].color,
-                xPos: xPos
+                xPos: xPos,
+                sunsetVisible: processedBuildings[b].sunsetVisible
             });
     
             xPos += buildingWidth;
