@@ -23,7 +23,9 @@ var buildingEditor = {
                 "prefix": "orange"
             }
         ]
-    }]
+    }],
+    selectedBuildingIndex: 0,
+    selectedColorIndex: 0
 };
 
 findVisibleBuildings = (buildings) => {
@@ -77,12 +79,16 @@ startProcess = () => {
 generateBuilding = (params) => {
     /*
 
-        params: id, height, xPos (optional), maxheight (optional)
+        params: id, height, type, color, xPos (optional), maxheight (optional)
+
+        asset file-naming: type-color-part.png
 
         returns: a building html element
     */
 
     let buildingHeight = params.height;
+    let buildingType = params.type.toLowerCase();
+    let buildingColor = params.color;
 
     let containerHeight = buildingHeight * (partHeight);
     if (params.maxHeight && ( buildingHeight > params.maxHeight)){
@@ -104,7 +110,7 @@ generateBuilding = (params) => {
     buildingPart.setAttribute("class", "building-part");
     let buildingRoof = document.createElement("img");
     buildingRoof.setAttribute("id", "building-roof");
-    buildingRoof.setAttribute("src", "assets/building_parts/red-roof.png");
+    buildingRoof.setAttribute("src", `assets/building_parts/${buildingType}-${buildingColor}-roof.png`);
     buildingPart.insertAdjacentElement("beforeend", buildingRoof);
     building.insertAdjacentElement("beforeend", buildingPart);
 
@@ -113,7 +119,7 @@ generateBuilding = (params) => {
         buildingPart.setAttribute("class", "building-part");
         let buildingMid = document.createElement("img");
         buildingMid.setAttribute("id", "building-middle");
-        buildingMid.setAttribute("src", "assets/building_parts/red-middle.png");
+        buildingMid.setAttribute("src", `assets/building_parts/${buildingType}-${buildingColor}-middle.png`);
         buildingPart.insertAdjacentElement("beforeend", buildingMid);
         building.insertAdjacentElement("beforeend", buildingPart);
     }
@@ -122,7 +128,7 @@ generateBuilding = (params) => {
     buildingPart.setAttribute("class", "building-part");
     let buildingBottom = document.createElement("img");
     buildingBottom.setAttribute("id", "building-bottom");
-    buildingBottom.setAttribute("src", "assets/building_parts/red-bottom.png");
+    buildingBottom.setAttribute("src", `assets/building_parts/${buildingType}-${buildingColor}-bottom.png`);
     buildingPart.insertAdjacentElement("beforeend", buildingBottom)
     building.insertAdjacentElement("beforeend", buildingPart);
 
@@ -166,14 +172,16 @@ generateScene = (buildingProps) => {
     document.querySelector("#sceneView").scrollTo({top: sceneHeight});
 }
 
-let heights = [5, 2, 3, 6, 1];
-generateScene(heights);
+// let heights = [5, 2, 3, 6, 1];
+// generateScene(heights);
 
 let initialize = () => {
     // set initial building UI in preview
     let generatedPreview = generateBuilding({
         id: 0,
         height: 1,
+        type: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].title,
+        color: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].colors[buildingEditor.selectedColorIndex].prefix,
         maxHeight: MAX_PREVIEW_HEIGHT
     })
 
