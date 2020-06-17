@@ -245,6 +245,12 @@ html, body {
     font-size: 1.2rem;
 }
 
+#buildingEditorPanel #storyLabel {
+    margin-left: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
 #buildingEditorPanel #buildingHeightSlider {
     margin-top: 0.5rem;
 }

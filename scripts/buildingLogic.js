@@ -12,7 +12,7 @@ var buildingSpace = 50;
 var buildingWidth = 250;
 
 // Building Editor Props:
-const MAX_PREVIEW_HEIGHT = 2;
+const MAX_PREVIEW_HEIGHT = 3;
 
 var buildingEditor = {
     availableBuildings: [
@@ -44,7 +44,8 @@ var buildingEditor = {
         }
     ],
     selectedBuildingIndex: 0,
-    selectedColorIndex: 0
+    selectedColorIndex: 0,
+    buildingHeight: 2
 };
 
 findVisibleBuildings = (buildings) => {
@@ -111,7 +112,8 @@ generateBuilding = (params) => {
 
     let containerHeight = buildingHeight * (partHeight);
     if (params.maxHeight && ( buildingHeight > params.maxHeight)){
-        containerHeight = maxHeight * partHeight
+        containerHeight = params.maxHeight * partHeight
+        buildingHeight = params.maxHeight;
     }
 
     // create a building with template and insert into sceneView before end
@@ -119,7 +121,7 @@ generateBuilding = (params) => {
     let building = template.querySelector("#buildingContainer");
     
     building.setAttribute("data-buildingID", params.id);
-    building.setAttribute("data-buildingHeight", buildingHeight);
+    building.setAttribute("data-buildingHeight", params.height);
     if (params.xPos){
         building.style.left = `${params.xPos}px`;
     }
@@ -133,7 +135,7 @@ generateBuilding = (params) => {
     buildingPart.insertAdjacentElement("beforeend", buildingRoof);
     building.insertAdjacentElement("beforeend", buildingPart);
 
-    for (c=0; c < buildingHeight; c++){
+    for (c=1; c < buildingHeight; c++){
         buildingPart = document.createElement("div");
         buildingPart.setAttribute("class", "building-part");
         let buildingMid = document.createElement("img");
@@ -192,10 +194,13 @@ generateScene = (buildingProps) => {
 // generateScene(heights);
 
 let initialize = () => {
-    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
+    setEditorUI();
 }
 
-setEditorUI = (selectedBuilding, selectedColor) => {
+setEditorUI = () => {
+    let selectedBuilding = buildingEditor.selectedBuildingIndex
+    let selectedColor = buildingEditor.selectedColorIndex;
+
     let prevBtn = document.querySelector("#prevBldgBtn");
     let nextBtn = document.querySelector("#nextBldgBtn");
 
@@ -210,7 +215,7 @@ setEditorUI = (selectedBuilding, selectedColor) => {
     // set initial building UI in preview
     let generatedPreview = generateBuilding({
         id: 0,
-        height: 1,
+        height: buildingEditor.buildingHeight,
         type: currentBuildingType,
         color: currentColor.prefix,
         maxHeight: MAX_PREVIEW_HEIGHT
@@ -251,6 +256,16 @@ setEditorUI = (selectedBuilding, selectedColor) => {
         colorBtn.setAttribute("data-colorName", currentBuilding.colors[c].prefix);
         colorsContainer.insertAdjacentElement("beforeend", colorBtn);
     }
+
+    // update height values
+    document.querySelector("#buildingHeightTextField").value = buildingEditor.buildingHeight;
+    document.querySelector("#buildingHeightSlider").value = buildingEditor.buildingHeight;
+    if (buildingEditor.buildingHeight == 1){
+        document.querySelector("#storyLabel").innerText = "Story";
+    } else {
+        document.querySelector("#storyLabel").innerText = "Stories";
+    }
+    
 }
 
 let buildingTypeChanged = (change) => {
@@ -262,14 +277,19 @@ let buildingTypeChanged = (change) => {
 
     buildingEditor.selectedColorIndex = 0;
 
-    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
+    setEditorUI();
 }
 
 let buildingColorChanged = (element) => {
     let colorID = element.getAttribute("data-colorID");
     buildingEditor.selectedColorIndex = parseInt(colorID);
 
-    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
+    setEditorUI();
+}
+
+let updateBuildingHeight = (newVal) => {
+    buildingEditor.buildingHeight = newVal;
+    setEditorUI();
 }
 
 window.onload = initialize();
