@@ -20,6 +20,8 @@ buildings.subscribe(() => {
 
 var buildingSpace = 50;
 var buildingWidth = 250;
+var tallestBuilding = 0;
+var visibleBuildings = 0;
 
 // Building Editor Props:
 const MAX_PREVIEW_HEIGHT = 3;
@@ -63,26 +65,31 @@ var buildingEditor = {
 
 findVisibleBuildings = (buildings) => {
     var sunset_visible = [];
-    var tallest = 0;
+    tallestBuilding = 0;
 
     if (buildings.length > 0){
-        sunset_visible = [buildings[0]];
-        tallest = buildings[0];
+        sunset_visible = [buildings[0].height];
+        tallest = buildings[0].height;
+        buildings[0].sunsetVisible = true;
     }
 
     for (var b=0; b < buildings.length; b++){
-        let building = buildings[b];
+        let bldgHeight = buildings[b].height;
         for (var v = 0; v < sunset_visible.length; v++){
             let visible = sunset_visible[v];
-            if ((building > visible) && (building > tallest)){
-                sunset_visible.push(building);
-                tallest = building;
+            if ((bldgHeight > visible) && (bldgHeight > tallest)){
+                sunset_visible.push(bldgHeight);
+                tallest = bldgHeight;
+                buildings[b].sunsetVisible = true;
             }
         }
     }
 
-    console.log(`The following buildings can see the sunset: ${sunset_visible}`);
-    console.log(`${sunset_visible.length} building(s) can see the sunset over the hills.`);
+    // console.log(`The following buildings can see the sunset: ${sunset_visible}`);
+    // console.log(`${sunset_visible.length} building(s) can see the sunset over the hills.`);
+    visibleBuildings = sunset_visible.length;
+
+    return buildings;
 }
 
 
@@ -187,14 +194,16 @@ updateSceneUI = (sceneBuildings) => {
         document.querySelector("#sceneView").hidden = false;
         document.querySelector("#emptyStateMessage").hidden = true;
 
-        for (b=0; b < sceneBuildings.length; b++){
+        let processedBuildings = findVisibleBuildings(sceneBuildings);
+
+        for (b=0; b < processedBuildings.length; b++){
             xPos += buildingSpace;
     
             let generatedBuilding = generateBuilding({
                 id: b,
-                type: sceneBuildings[b].type,
-                height: sceneBuildings[b].height,
-                color: sceneBuildings[b].color,
+                type: processedBuildings[b].type,
+                height: processedBuildings[b].height,
+                color: processedBuildings[b].color,
                 xPos: xPos
             });
     
