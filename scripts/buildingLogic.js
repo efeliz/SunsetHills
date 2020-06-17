@@ -109,14 +109,15 @@ generateScene = (buildingProps) => {
     document.querySelector("#heightDefiner").style.height = `1500px`;
     let sceneWidth = document.querySelector("#sceneView").scrollWidth;
     let sceneHeight = document.querySelector("#sceneView").scrollHeight;
-    document.querySelector("#groundPart").style.top = `${sceneHeight}px`;
+    document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
     document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
 
     let foundBuildings = document.querySelectorAll(".buildingContainer");
-    let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect();
+    let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
     // console.log(foundBuildings);
     foundBuildings.forEach(bldg => {
-        bldg.style.bottom = `-${(groundTopPosition.top / 2) - 115}px`;
+        let bldgBtm = bldg.getBoundingClientRect().bottom;
+        bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight*2))}px`;
     });
 
     document.querySelector("#sceneView").scrollTo({top: sceneHeight});
