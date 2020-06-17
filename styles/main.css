@@ -75,6 +75,10 @@ html, body {
     /* bottom: var(--ground-height); */
 }
 
+#sceneView .buildingContainer[data-sunsetVisible="false"] {
+    filter: grayscale(1) opacity(0.8);
+}
+
 #sceneView .buildingContainer .building-part {
     height: var(--building-part-height);
     width: var(--building-part-width);
