@@ -142,7 +142,7 @@ html, body {
 }
 
 .panel-content .panel-section-heading.heading-bottom {
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
 }
 /* PANELS */
 
@@ -206,24 +206,30 @@ html, body {
     height: max-content;
 
     text-align: center;
+    
 }
 
 #buildingEditorPanel #buildingColorsContainer .colorSelectBtn {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.25rem;
+    height: 2rem;
 
     background-color: #fff;
     border-radius: 3px;
     border: none;
+    outline: none;
+    vertical-align: middle;
+}
+
+#buildingEditorPanel #buildingColorsContainer .colorSelectBtn:not(:first-child) {
+    margin-left: 0.75rem;
+}
+
+#buildingEditorPanel #buildingColorsContainer .colorSelectBtn.is-selected {
+    border: 3px solid #303030;
 }
 
 #buildingEditorPanel #buildingColorsContainer .colorSelectBtn:hover {
     cursor: pointer;
-}
-
-#buildingEditorPanel #buildingColorsContainer .colorSelectBtn:focus {
-    border: none;
-    outline: none;
 }
 
 /* Building Editor */

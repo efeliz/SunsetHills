@@ -244,6 +244,9 @@ setEditorUI = (selectedBuilding, selectedColor) => {
         let colorBtn = colorBtnTemplate.content.cloneNode(true).querySelector("button");
         colorBtn.style.backgroundColor = `${currentBuilding.colors[c].code}`;
         colorBtn.setAttribute("data-colorID", c);
+        if (buildingEditor.selectedColorIndex === c){
+            colorBtn.classList.toggle("is-selected", true);
+        }
         colorBtn.setAttribute("data-colorName", currentBuilding.colors[c].prefix);
         colorsContainer.insertAdjacentElement("beforeend", colorBtn);
     }
