@@ -7,6 +7,25 @@
 
 let partHeight = 200;
 
+// Building Editor Props:
+const MAX_PREVIEW_HEIGHT = 2;
+
+var buildingEditor = {
+    availableBuildings: [{
+        "title": "Standard",
+        "colors": [
+            {
+                "code": "#E26A6A",
+                "prefix": "red"
+            },
+            {
+                "code": "#FABE58",
+                "prefix": "orange"
+            }
+        ]
+    }]
+};
+
 findVisibleBuildings = (buildings) => {
     var sunset_visible = [];
     var tallest = 0;
@@ -58,7 +77,7 @@ startProcess = () => {
 generateBuilding = (params) => {
     /*
 
-        params: id, height, xPos, maxheight (optional)
+        params: id, height, xPos (optional), maxheight (optional)
 
         returns: a building html element
     */
@@ -149,3 +168,16 @@ generateScene = (buildingProps) => {
 
 let heights = [5, 2, 3, 6, 1];
 generateScene(heights);
+
+let initialize = () => {
+    // set initial building UI in preview
+    let generatedPreview = generateBuilding({
+        id: 0,
+        height: 1,
+        maxHeight: MAX_PREVIEW_HEIGHT
+    })
+
+    document.querySelector("#buildingPreview").insertAdjacentElement("beforeend", generatedPreview);
+}
+
+window.onload = initialize();
