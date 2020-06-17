@@ -44,6 +44,10 @@
                     <div id="buildingColorsContainer"></div>
                     <h3 class="panel-section-heading heading-bottom">Available Colors</h3>
 
+                    <input id="buildingHeightTextField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange="updateBuildingHeight(this.value)"/><br>
+                    <input id="buildingHeightSlider" class="horizontal-slider" type="range" value="1" step="1" min="1" max="15" oninput="updateBuildingHeight(this.value)"/>
+                    <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Building Height</h3>
+
                     <button class="standardBtn" onclick="addBuildingToScene()">Add To Scene</button>
                 </div>
             </div>
@@ -55,8 +59,7 @@
         </div>
 
         <template id="buildingTemplate">
-            <div id="buildingContainer" class="buildingContainer" data-buildingID="" data-buildingHeight="">
-            </div>
+            <div id="buildingContainer" class="buildingContainer" data-buildingID="" data-buildingHeight=""></div>
         </template>
 
         <template id="colorSelectBtnTemplate">

@@ -7,6 +7,10 @@
 
 let partHeight = 200;
 
+// Scene Props & Values:
+var buildingSpace = 50;
+var buildingWidth = 250;
+
 // Building Editor Props:
 const MAX_PREVIEW_HEIGHT = 2;
 
@@ -151,9 +155,6 @@ generateBuilding = (params) => {
 }
 
 generateScene = (buildingProps) => {
-    let buildingSpace = 50;
-    let buildingWidth = 250;
-    
     var xPos = 0;
 
     for (b=0; b < buildingProps.length; b++){

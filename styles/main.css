@@ -236,6 +236,19 @@ html, body {
     margin-top: 0.5rem;
 }
 
+#buildingEditorPanel #buildingHeightTextField {
+    margin-top: 0.5rem;
+    width: 2.5rem;
+    height: 2rem;
+    text-align: center;
+    
+    font-size: 1.2rem;
+}
+
+#buildingEditorPanel #buildingHeightSlider {
+    margin-top: 0.5rem;
+}
+
 /* Building Editor */
 
 /* OTHER/MISC. */
@@ -252,6 +265,19 @@ html, body {
 
     border: none;
     outline: none;
+}
+
+.standard-text-field {
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+
+    font-family: "Rajdhani";
+    font-weight: bold;
+}
+
+.horizontal-slider {
+    min-width: 10rem;
 }
 
 #emptyStateMessage {
