@@ -3,6 +3,8 @@
 :root {
     /* GLOBAL CSS PROPS */
 
+    --primary-color: #446cb3;
+
     --navbar-color: rgba(0, 0, 0, 0.75);
     --navbar-height: 3rem;
 
@@ -127,19 +129,17 @@ html, body {
     height: 100%;
     width: 100%;
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .panel-content .panel-title {
     margin-top: 0.5rem;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
     font-size: 1.75rem;
 }
 
-.panel-content .panel-section-heading {
-    text-align: center;
-}
+.panel-content .panel-section-heading {}
 
 .panel-content .panel-section-heading.heading-bottom {
     margin-top: 0.5rem;
@@ -232,16 +232,35 @@ html, body {
     cursor: pointer;
 }
 
+#buildingEditorPanel .standardBtn {
+    margin-top: 0.5rem;
+}
+
 /* Building Editor */
 
 /* OTHER/MISC. */
+.standardBtn {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bolder;
+    font-size: 0.9rem;
+
+    padding: 0.75rem 2rem;
+    
+    border-radius: 3px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+
+    border: none;
+    outline: none;
+}
+
 #emptyStateMessage {
     margin-top: calc(var(--navbar-height) + 1rem);
     padding: 1.5rem;
     margin-left: auto;
     margin-right: auto;
 
-    background-color: #446cb3;
+    background-color: var(--primary-color);
 }
 
 #emptyStateMessage p {
