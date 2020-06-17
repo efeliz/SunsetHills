@@ -13,6 +13,8 @@ let partHeight = 200;
 
 // Scene Props & Values:
 var buildings = [];
+
+
 var buildingSpace = 50;
 var buildingWidth = 250;
 
@@ -164,15 +166,15 @@ generateBuilding = (params) => {
     return building;
 }
 
-generateScene = (buildingProps) => {
+generateScene = (sceneBuildings) => {
     var xPos = 0;
 
-    for (b=0; b < buildingProps.length; b++){
+    for (b=0; b < sceneBuildings.length; b++){
         xPos += buildingSpace;
 
         let generatedBuilding = generateBuilding({
             id: b,
-            height: buildingProps[b],
+            height: sceneBuildings[b],
             xPos: xPos
         });
 
