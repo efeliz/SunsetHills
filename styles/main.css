@@ -4,6 +4,7 @@
     /* GLOBAL CSS PROPS */
 
     --navbar-color: rgba(0, 0, 0, 0.75);
+    --navbar-height: 3rem;
 
     --scene-height: 500px;
 
@@ -29,7 +30,7 @@ html, body {
     background-color: var(--navbar-color);
     width: 100vw;
     max-width: 100vw;
-    height: 3rem;
+    height: var(--navbar-height);
     padding: 0.5rem 1rem;
 
     position: fixed;
@@ -192,3 +193,18 @@ html, body {
 }
 
 /* Building Editor */
+
+/* OTHER/MISC. */
+#emptyStateMessage {
+    margin-top: calc(var(--navbar-height) + 1rem);
+    padding: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: #446cb3;
+}
+
+#emptyStateMessage p {
+    color: white;
+    font-size: 1.2em;
+}
