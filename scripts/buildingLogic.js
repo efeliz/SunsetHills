@@ -259,6 +259,15 @@ let buildingTypeChanged = (change) => {
         buildingEditor.selectedBuildingIndex -= 1;
     }
 
+    buildingEditor.selectedColorIndex = 0;
+
+    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
+}
+
+let buildingColorChanged = (element) => {
+    let colorID = element.getAttribute("data-colorID");
+    buildingEditor.selectedColorIndex = parseInt(colorID);
+
     setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
 }
 
