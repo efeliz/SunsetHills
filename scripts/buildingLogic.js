@@ -12,7 +12,10 @@ class building {
 let partHeight = 200;
 
 // Scene Props & Values:
-var buildings = [];
+this.buildings = ko.observableArray();
+buildings.subscribe(() => {
+    generateScene(this.buildings());
+}, this, "arrayChange");
 
 
 var buildingSpace = 50;
@@ -166,15 +169,25 @@ generateBuilding = (params) => {
     return building;
 }
 
+clearSceneView = () => {
+    document.querySelector("#sceneView").innerHTML = "";
+    let baseItems = document.querySelector("#blankSceneTemplate").content.cloneNode(true);
+    document.querySelector("#sceneView").appendChild(baseItems.querySelector("#heightDefiner"));
+    document.querySelector("#sceneView").appendChild(baseItems.querySelector("#groundPart"));
+}
+
 generateScene = (sceneBuildings) => {
     var xPos = 0;
-
+    clearSceneView();
+    
     for (b=0; b < sceneBuildings.length; b++){
         xPos += buildingSpace;
 
         let generatedBuilding = generateBuilding({
             id: b,
-            height: sceneBuildings[b],
+            type: sceneBuildings[b].type,
+            height: sceneBuildings[b].height,
+            color: sceneBuildings[b].color,
             xPos: xPos
         });
 
@@ -194,7 +207,7 @@ generateScene = (sceneBuildings) => {
 
     foundBuildings.forEach(bldg => {
         let bldgBtm = bldg.getBoundingClientRect().bottom;
-        bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight*2))}px`;
+        bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight))}px`;
     });
 
     document.querySelector("#sceneView").scrollTo({top: sceneHeight});

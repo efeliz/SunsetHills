@@ -12,10 +12,7 @@
             <h2 id="navTitle">Sunset Hills</h2>
         </div>
 
-        <div id="sceneView">
-            <div id="heightDefiner"></div>
-            <div id="groundPart"></div>
-        </div>
+        <div id="sceneView"></div>
 
         <div id="emptyStateMessage" hidden>
             <p>
@@ -59,6 +56,11 @@
                 </div>
             </div>
         </div>
+
+        <template id="blankSceneTemplate">
+            <div id="heightDefiner"></div>
+            <div id="groundPart"></div>
+        </template>
 
         <template id="buildingTemplate">
             <div id="buildingContainer" class="buildingContainer" data-buildingID="" data-buildingHeight=""></div>
