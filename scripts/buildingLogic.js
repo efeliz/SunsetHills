@@ -5,6 +5,8 @@
 
 // sample: 1, 2, 6, 3, 4, 7, 8, 10
 
+let partHeight = 200;
+
 findVisibleBuildings = (buildings) => {
     var sunset_visible = [];
     var tallest = 0;
@@ -53,58 +55,80 @@ startProcess = () => {
     }
 }
 
+generateBuilding = (params) => {
+    /*
+
+        params: id, height, xPos, maxheight (optional)
+
+        returns: a building html element
+    */
+
+    let buildingHeight = params.height;
+
+    let containerHeight = buildingHeight * (partHeight);
+    if (params.maxHeight && ( buildingHeight > params.maxHeight)){
+        containerHeight = maxHeight * partHeight
+    }
+
+    // create a building with template and insert into sceneView before end
+    let template = document.querySelector("#buildingTemplate").content.cloneNode(true);
+    let building = template.querySelector("#buildingContainer");
+    
+    building.setAttribute("data-buildingID", params.id);
+    building.setAttribute("data-buildingHeight", buildingHeight);
+    if (params.xPos){
+        building.style.left = `${params.xPos}px`;
+    }
+    building.style.height = `${containerHeight}px`;
+
+    var buildingPart = document.createElement("div");
+    buildingPart.setAttribute("class", "building-part");
+    let buildingRoof = document.createElement("img");
+    buildingRoof.setAttribute("id", "building-roof");
+    buildingRoof.setAttribute("src", "assets/building_parts/red-roof.png");
+    buildingPart.insertAdjacentElement("beforeend", buildingRoof);
+    building.insertAdjacentElement("beforeend", buildingPart);
+
+    for (c=0; c < buildingHeight; c++){
+        buildingPart = document.createElement("div");
+        buildingPart.setAttribute("class", "building-part");
+        let buildingMid = document.createElement("img");
+        buildingMid.setAttribute("id", "building-middle");
+        buildingMid.setAttribute("src", "assets/building_parts/red-middle.png");
+        buildingPart.insertAdjacentElement("beforeend", buildingMid);
+        building.insertAdjacentElement("beforeend", buildingPart);
+    }
+
+    buildingPart = document.createElement("div");
+    buildingPart.setAttribute("class", "building-part");
+    let buildingBottom = document.createElement("img");
+    buildingBottom.setAttribute("id", "building-bottom");
+    buildingBottom.setAttribute("src", "assets/building_parts/red-bottom.png");
+    buildingPart.insertAdjacentElement("beforeend", buildingBottom)
+    building.insertAdjacentElement("beforeend", buildingPart);
+
+    return building;
+}
+
 generateScene = (buildingProps) => {
-    // var generatedBuildings = [];
     let buildingSpace = 50;
-    let partHeight = 200;
     let buildingWidth = 250;
     
     var xPos = 0;
 
     for (b=0; b < buildingProps.length; b++){
-        let buildingHeight = buildingProps[b];
-        let buildingContainerHeight = buildingHeight * (partHeight);
         xPos += buildingSpace;
 
-        // create a building with template and insert into sceneView before end
-        let template = document.querySelector("#buildingTemplate").content.cloneNode(true);
-        let building = template.querySelector("#buildingContainer");
-        
-        building.setAttribute("data-buildingID", b);
-        building.setAttribute("data-buildingHeight", buildingHeight);
-        building.style.left = `${xPos}px`;
-        building.style.height = `${buildingContainerHeight}px`;
-
-        var buildingPart = document.createElement("div");
-        buildingPart.setAttribute("class", "building-part");
-        let buildingRoof = document.createElement("img");
-        buildingRoof.setAttribute("id", "building-roof");
-        buildingRoof.setAttribute("src", "assets/building_parts/red-roof.png");
-        buildingPart.insertAdjacentElement("beforeend", buildingRoof);
-        building.insertAdjacentElement("beforeend", buildingPart);
-
-        for (c=0; c < buildingHeight; c++){
-            buildingPart = document.createElement("div");
-            buildingPart.setAttribute("class", "building-part");
-            let buildingMid = document.createElement("img");
-            buildingMid.setAttribute("id", "building-middle");
-            buildingMid.setAttribute("src", "assets/building_parts/red-middle.png");
-            buildingPart.insertAdjacentElement("beforeend", buildingMid);
-            building.insertAdjacentElement("beforeend", buildingPart);
-        }
-
-        buildingPart = document.createElement("div");
-        buildingPart.setAttribute("class", "building-part");
-        let buildingBottom = document.createElement("img");
-        buildingBottom.setAttribute("id", "building-bottom");
-        buildingBottom.setAttribute("src", "assets/building_parts/red-bottom.png");
-        buildingPart.insertAdjacentElement("beforeend", buildingBottom)
-        building.insertAdjacentElement("beforeend", buildingPart);
+        let generatedBuilding = generateBuilding({
+            id: b,
+            height: buildingProps[b],
+            xPos: xPos
+        });
 
         xPos += buildingWidth;
 
         let sceneContainer = document.querySelector("#sceneView");
-        sceneContainer.insertAdjacentElement("afterbegin", building);
+        sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
     }
     document.querySelector("#heightDefiner").style.height = `1500px`;
     let sceneWidth = document.querySelector("#sceneView").scrollWidth;
@@ -114,7 +138,7 @@ generateScene = (buildingProps) => {
 
     let foundBuildings = document.querySelectorAll(".buildingContainer");
     let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
-    // console.log(foundBuildings);
+
     foundBuildings.forEach(bldg => {
         let bldgBtm = bldg.getBoundingClientRect().bottom;
         bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight*2))}px`;
