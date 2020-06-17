@@ -3,8 +3,7 @@
 :root {
     /* GLOBAL CSS PROPS */
 
-    --navbar-color: #2e3131;
-    --navbar-opacity: 100%;
+    --navbar-color: rgba(0, 0, 0, 0.75);
 
     --scene-height: 500px;
 
@@ -27,10 +26,14 @@ html, body {
 
 #navbar {
     background-color: var(--navbar-color);
-    opacity: var(--navbar-opacity);
+    width: 100vw;
     max-width: 100vw;
     height: 3rem;
     padding: 0.5rem 1rem;
+
+    position: fixed;
+    top: 0;
+    z-index: 1;
 }
 
 #navbar #navTitle {
@@ -52,6 +55,8 @@ html, body {
 
     overflow-x: scroll;
     overflow-y: scroll;
+
+    --ms-overflow-style: none;
 }
 
 #sceneView #heightDefiner {
