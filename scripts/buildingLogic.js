@@ -204,6 +204,8 @@ setEditorUI = (selectedBuilding, selectedColor) => {
     let currentBuildingType = currentBuilding.title;
     let currentColor = currentBuilding.colors[selectedColor];
 
+    let buildingPreviewBox = document.querySelector("#buildingPreview");
+    buildingPreviewBox.innerHTML = "";
     // set initial building UI in preview
     let generatedPreview = generateBuilding({
         id: 0,
@@ -212,14 +214,16 @@ setEditorUI = (selectedBuilding, selectedColor) => {
         color: currentColor.prefix,
         maxHeight: MAX_PREVIEW_HEIGHT
     })
-    document.querySelector("#buildingPreview").insertAdjacentElement("beforeend", generatedPreview);
+    buildingPreviewBox.insertAdjacentElement("beforeend", generatedPreview);
+
+    document.querySelector("#buildingTypeLabel").innerText = currentBuildingType;
 
     // set arrow button states
     if (availableTypesCount > 1){
-        if (selectedBuilding == availableTypesCount) {
+        if (selectedBuilding === (availableTypesCount - 1)) {
             prevBtn.hidden = false;
             nextBtn.hidden = true;
-        } else if (selectedBuilding == 0){
+        } else if (selectedBuilding === 0){
             prevBtn.hidden = true;
             nextBtn.hidden = false;
         } else {
@@ -230,6 +234,16 @@ setEditorUI = (selectedBuilding, selectedColor) => {
         prevBtn.hidden = true;
         nextBtn.hidden = true;
     }
+}
+
+let buildingTypeChanged = (change) => {
+    if (change === "increment"){
+        buildingEditor.selectedBuildingIndex += 1;
+    } else if (change === "decrement"){
+        buildingEditor.selectedBuildingIndex -= 1;
+    }
+
+    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
 }
 
 window.onload = initialize();

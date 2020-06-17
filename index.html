@@ -32,13 +32,13 @@
                     <div id="buildingPreview"></div>
                     <div id="buildingTypeContainer">
                         <div class="row">
-                            <a id="prevBldgBtn" class="iconBtn"><i class="fas fa-chevron-circle-left"></i></a>
+                        <a id="prevBldgBtn" class="iconBtn" onclick="buildingTypeChanged('decrement');"><i class="fas fa-chevron-circle-left"></i></a>
                         </div>
                         <div id="typeLabelRow" class="row">
-                            <h2 id="buildingTypeLabel">Standard</h2>
+                            <h2 id="buildingTypeLabel"></h2>
                         </div>
                         <div class="row">
-                            <a id="nextBldgBtn" class="iconBtn"><i class="fas fa-chevron-circle-right"></i></a>
+                            <a id="nextBldgBtn" class="iconBtn" onclick="buildingTypeChanged('increment');"><i class="fas fa-chevron-circle-right"></i></a>
                         </div>
                     </div>
                     <div id="buildingColorsContainer"></div>
