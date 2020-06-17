@@ -34,7 +34,7 @@ html, body {
 
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 999;
 }
 
 #navbar #navTitle {
@@ -125,6 +125,7 @@ html, body {
 #panels-container .panel .panel-content {
     height: 100%;
     width: 100%;
+    padding-bottom: 1rem;
 }
 
 .panel-content .panel-title {
@@ -132,6 +133,7 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-size: 1.75rem;
 }
 /* PANELS */
 
@@ -139,6 +141,7 @@ html, body {
 #buildingEditorPanel #buildingPreview {
     width: 100%;
     height: max-content;
+    margin-top: 0.25rem;
     margin-bottom: 1rem;
 }
 
@@ -148,7 +151,6 @@ html, body {
     margin-right: auto;
     width: max-content;
     height: max-content !important;
-    /* bottom: var(--ground-height); */
 }
 
 #buildingPreview .buildingContainer .building-part {
@@ -166,4 +168,27 @@ html, body {
 #buildingPreview .buildingContainer .building-part #building-roof{
     transform: translate(-20px, 6px);
 }
+
+#buildingEditorPanel #buildingTypeContainer {
+    padding: 0 1rem;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    flex-basis: 33.3%;
+}
+
+#buildingEditorPanel #buildingTypeContainer .row{
+
+}
+
+#buildingEditorPanel #buildingTypeContainer .row#typeLabelRow {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+}
+
+#buildingTypeContainer .row .iconBtn i {
+    font-size: 1.75rem;
+}
+
 /* Building Editor */
