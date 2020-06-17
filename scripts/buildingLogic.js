@@ -227,18 +227,18 @@ setEditorUI = () => {
     // set arrow button states
     if (availableTypesCount > 1){
         if (selectedBuilding === (availableTypesCount - 1)) {
-            prevBtn.hidden = false;
-            nextBtn.hidden = true;
+            prevBtn.disabled = false;
+            nextBtn.disabled = true;
         } else if (selectedBuilding === 0){
-            prevBtn.hidden = true;
-            nextBtn.hidden = false;
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
         } else {
-            prevBtn.hidden = false;
-            nextBtn.hidden = false;
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
         }
     } else {
-        prevBtn.hidden = true;
-        nextBtn.hidden = true;
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
     }
 
     // generate color options
