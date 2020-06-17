@@ -234,6 +234,19 @@ setEditorUI = (selectedBuilding, selectedColor) => {
         prevBtn.hidden = true;
         nextBtn.hidden = true;
     }
+
+    // generate color options
+    let colorsContainer = document.querySelector("#buildingColorsContainer");
+    colorsContainer.innerHTML = "";
+
+    let colorBtnTemplate = document.querySelector("#colorSelectBtnTemplate"); 
+    for (c=0; c < currentBuilding.colors.length; c++){
+        let colorBtn = colorBtnTemplate.content.cloneNode(true).querySelector("button");
+        colorBtn.style.backgroundColor = `${currentBuilding.colors[c].code}`;
+        colorBtn.setAttribute("data-colorID", c);
+        colorBtn.setAttribute("data-colorName", currentBuilding.colors[c].prefix);
+        colorsContainer.insertAdjacentElement("beforeend", colorBtn);
+    }
 }
 
 let buildingTypeChanged = (change) => {
