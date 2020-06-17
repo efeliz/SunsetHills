@@ -11,19 +11,34 @@ let partHeight = 200;
 const MAX_PREVIEW_HEIGHT = 2;
 
 var buildingEditor = {
-    availableBuildings: [{
-        "title": "Standard",
-        "colors": [
-            {
-                "code": "#E26A6A",
-                "prefix": "red"
-            },
-            {
-                "code": "#FABE58",
-                "prefix": "orange"
-            }
-        ]
-    }],
+    availableBuildings: [
+        {
+            "title": "Standard",
+            "colors": [
+                {
+                    "code": "#E26A6A",
+                    "prefix": "red"
+                },
+                {
+                    "code": "#FABE58",
+                    "prefix": "orange"
+                }
+            ]
+        },
+        {
+            "title": "Office",
+            "colors": [
+                {
+                    "code": "#E26A6A",
+                    "prefix": "red"
+                },
+                {
+                    "code": "#FABE58",
+                    "prefix": "orange"
+                }
+            ]
+        }
+    ],
     selectedBuildingIndex: 0,
     selectedColorIndex: 0
 };
@@ -176,16 +191,45 @@ generateScene = (buildingProps) => {
 // generateScene(heights);
 
 let initialize = () => {
+    setEditorUI(buildingEditor.selectedBuildingIndex, buildingEditor.selectedColorIndex);
+}
+
+setEditorUI = (selectedBuilding, selectedColor) => {
+    let prevBtn = document.querySelector("#prevBldgBtn");
+    let nextBtn = document.querySelector("#nextBldgBtn");
+
+    let availableTypesCount = buildingEditor.availableBuildings.length;
+
+    let currentBuilding = buildingEditor.availableBuildings[selectedBuilding];
+    let currentBuildingType = currentBuilding.title;
+    let currentColor = currentBuilding.colors[selectedColor];
+
     // set initial building UI in preview
     let generatedPreview = generateBuilding({
         id: 0,
         height: 1,
-        type: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].title,
-        color: buildingEditor.availableBuildings[buildingEditor.selectedBuildingIndex].colors[buildingEditor.selectedColorIndex].prefix,
+        type: currentBuildingType,
+        color: currentColor.prefix,
         maxHeight: MAX_PREVIEW_HEIGHT
     })
-
     document.querySelector("#buildingPreview").insertAdjacentElement("beforeend", generatedPreview);
+
+    // set arrow button states
+    if (availableTypesCount > 1){
+        if (selectedBuilding == availableTypesCount) {
+            prevBtn.hidden = false;
+            nextBtn.hidden = true;
+        } else if (selectedBuilding == 0){
+            prevBtn.hidden = true;
+            nextBtn.hidden = false;
+        } else {
+            prevBtn.hidden = false;
+            nextBtn.hidden = false;
+        }
+    } else {
+        prevBtn.hidden = true;
+        nextBtn.hidden = true;
+    }
 }
 
 window.onload = initialize();
