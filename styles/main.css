@@ -136,6 +136,14 @@ html, body {
     text-align: center;
     font-size: 1.75rem;
 }
+
+.panel-content .panel-section-heading {
+    text-align: center;
+}
+
+.panel-content .panel-section-heading.heading-bottom {
+    margin-top: 0.25rem;
+}
 /* PANELS */
 
 /* Building Editor */
@@ -190,6 +198,32 @@ html, body {
 
 #buildingTypeContainer .row .iconBtn i {
     font-size: 1.75rem;
+}
+
+#buildingEditorPanel #buildingColorsContainer {
+    margin-top: 0.75rem;
+    width: 100%;
+    height: max-content;
+
+    text-align: center;
+}
+
+#buildingEditorPanel #buildingColorsContainer .colorSelectBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    background-color: #fff;
+    border-radius: 3px;
+    border: none;
+}
+
+#buildingEditorPanel #buildingColorsContainer .colorSelectBtn:hover {
+    cursor: pointer;
+}
+
+#buildingEditorPanel #buildingColorsContainer .colorSelectBtn:focus {
+    border: none;
+    outline: none;
 }
 
 /* Building Editor */
