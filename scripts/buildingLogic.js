@@ -14,7 +14,7 @@ let partHeight = 200;
 // Scene Props & Values:
 this.buildings = ko.observableArray();
 buildings.subscribe(() => {
-    generateScene(this.buildings());
+    updateSceneUI(this.buildings());
 }, this, "arrayChange");
 
 
@@ -176,44 +176,53 @@ clearSceneView = () => {
     document.querySelector("#sceneView").appendChild(baseItems.querySelector("#groundPart"));
 }
 
-generateScene = (sceneBuildings) => {
+updateSceneUI = (sceneBuildings) => {
     var xPos = 0;
     clearSceneView();
+
+    if (sceneBuildings == null || sceneBuildings.length < 1){
+        document.querySelector("#sceneView").hidden = true;
+        document.querySelector("#emptyStateMessage").hidden = false;
+    } else {
+        document.querySelector("#sceneView").hidden = false;
+        document.querySelector("#emptyStateMessage").hidden = true;
+
+        for (b=0; b < sceneBuildings.length; b++){
+            xPos += buildingSpace;
     
-    for (b=0; b < sceneBuildings.length; b++){
-        xPos += buildingSpace;
-
-        let generatedBuilding = generateBuilding({
-            id: b,
-            type: sceneBuildings[b].type,
-            height: sceneBuildings[b].height,
-            color: sceneBuildings[b].color,
-            xPos: xPos
+            let generatedBuilding = generateBuilding({
+                id: b,
+                type: sceneBuildings[b].type,
+                height: sceneBuildings[b].height,
+                color: sceneBuildings[b].color,
+                xPos: xPos
+            });
+    
+            xPos += buildingWidth;
+    
+            let sceneContainer = document.querySelector("#sceneView");
+            sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
+        }
+        document.querySelector("#heightDefiner").style.height = `1500px`;
+        let sceneWidth = document.querySelector("#sceneView").scrollWidth;
+        let sceneHeight = document.querySelector("#sceneView").scrollHeight;
+        document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
+        document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
+    
+        let foundBuildings = document.querySelectorAll(".buildingContainer");
+        let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
+    
+        foundBuildings.forEach(bldg => {
+            let bldgBtm = bldg.getBoundingClientRect().bottom;
+            bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight))}px`;
         });
-
-        xPos += buildingWidth;
-
-        let sceneContainer = document.querySelector("#sceneView");
-        sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
+    
+        document.querySelector("#sceneView").scrollTo({top: sceneHeight});
     }
-    document.querySelector("#heightDefiner").style.height = `1500px`;
-    let sceneWidth = document.querySelector("#sceneView").scrollWidth;
-    let sceneHeight = document.querySelector("#sceneView").scrollHeight;
-    document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
-    document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
-
-    let foundBuildings = document.querySelectorAll(".buildingContainer");
-    let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
-
-    foundBuildings.forEach(bldg => {
-        let bldgBtm = bldg.getBoundingClientRect().bottom;
-        bldg.style.top = `${(groundTopPosition - bldgBtm - (partHeight))}px`;
-    });
-
-    document.querySelector("#sceneView").scrollTo({top: sceneHeight});
 }
 
 let initialize = () => {
+    updateSceneUI();
     setEditorUI();
 }
 
