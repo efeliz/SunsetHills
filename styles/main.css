@@ -196,6 +196,16 @@ html, body {
     margin-right: 1.25rem;
 }
 
+#buildingTypeContainer .row .iconBtn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#buildingTypeContainer .row .iconBtn:hover {
+    cursor: pointer;
+}
+
 #buildingTypeContainer .row .iconBtn i {
     font-size: 1.75rem;
 }
