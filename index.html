@@ -56,31 +56,31 @@
                     
                     <div class="formItem">
                         <div>
-                            <input id="randomMaxHeightField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange=""/>
+                            <input id="randomMaxHeightField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange="updateRandomizerValue('maxHeight', this.value)"/>
                         </div>
                         <div>
                             <h3 class="panel-section-heading">Max Height</h3>
-                            <input id="randomMaxHeightSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" onchange=""/>
+                            <input id="randomMaxHeightSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" oninput="updateRandomizerValue('maxHeight', this.value)"/>
                         </div>
                     </div>
                     
                     <div class="formItem">
                         <div>
-                            <input id="randomMinHeightField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange=""/>
+                            <input id="randomMinHeightField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange="updateRandomizerValue('minHeight', this.value)"/>
                         </div>
                         <div>
                             <h3 class="panel-section-heading">Min Height</h3>
-                            <input id="randomMinHeightSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" onchange=""/>
+                            <input id="randomMinHeightSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" oninput="updateRandomizerValue('minHeight', this.value)"/>
                         </div>
                     </div>
 
                     <div class="formItem">
                         <div>
-                            <input id="randomBuildingCountField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange=""/>
+                            <input id="randomBuildingCountField" class="standard-text-field" type="number" value="1" min="1" max="15" onchange="updateRandomizerValue('buildingCount', this.value)"/>
                         </div>
                         <div>
                             <h3 class="panel-section-heading">Building Count</h3>
-                            <input id="randomBuildingCountSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" onchange=""/>
+                            <input id="randomBuildingCountSlider" class="horizontal-slider" type="range" value="5" step="1" min="1" max="20" oninput="updateRandomizerValue('buildingCount', this.value)"/>
                         </div>
                     </div>
 

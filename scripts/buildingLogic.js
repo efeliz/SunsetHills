@@ -71,7 +71,7 @@ const DEFAULT_RANDOM_MAX_BUILDING_COUNT = 5;
 let randomizerOpt = {
     maxHeight: DEFAULT_RANDOM_MAX_HEIGHT,
     minHeight: DEFAULT_RANDOM_MIN_HEIGHT,
-    maxBuildings: DEFAULT_RANDOM_MAX_BUILDING_COUNT
+    buildingCount: DEFAULT_RANDOM_MAX_BUILDING_COUNT
 };
 
 findVisibleBuildings = (buildings) => {
@@ -363,11 +363,23 @@ let addBuildingToScene = () => {
 let setRandomizerUI = () => {
     document.querySelector("#randomMaxHeightField").value = randomizerOpt.maxHeight;
     document.querySelector("#randomMinHeightField").value = randomizerOpt.minHeight;
-    document.querySelector("#randomBuildingCountField").value = randomizerOpt.maxBuildings;
+    document.querySelector("#randomBuildingCountField").value = randomizerOpt.buildingCount;
 
     document.querySelector("#randomMaxHeightSlider").value = randomizerOpt.maxHeight;
     document.querySelector("#randomMinHeightSlider").value = randomizerOpt.minHeight;
-    document.querySelector("#randomBuildingCountSlider").value = randomizerOpt.maxBuildings;
+    document.querySelector("#randomBuildingCountSlider").value = randomizerOpt.buildingCount;
+}
+
+let updateRandomizerValue = (name, newVal) => {
+    if (name === "maxHeight"){
+        randomizerOpt.maxHeight = newVal;
+    } else if (name === "minHeight"){
+        randomizerOpt.minHeight = newVal;
+    } else if (name === "buildingCount"){
+        randomizerOpt.buildingCount = newVal;
+    }
+
+    setRandomizerUI();
 }
 
 window.onload = initialize();
