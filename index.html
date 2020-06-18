@@ -9,7 +9,16 @@
     </head>
     <body>
         <div id="navbar">
-            <h2 id="navTitle">Sunset Hills</h2>
+            <div id="nav-start">
+                <h2 id="navTitle">Sunset Hills</h2>
+            </div>
+        
+            <div id="nav-end">
+                <button id="fullScreenBtn" class="standardBtn" onclick="expandSceneToggle(this)" data-status="normal">
+                    <i id="fullScreenBtnIcon" class="fas fa-expand-alt fa-lg" style="display: inline;"></i>
+                    <h3 id="fullScreenBtnTxt" style="display: inline;">EXPAND</h3>
+                </button>
+            </div>
         </div>
 
         <div id="sceneView"></div>

@@ -9,6 +9,9 @@ class building {
     }
 }
 
+const DEFAULT_SCENE_HEIGHT = 500;
+const MINIMUM_SCENE_HEIGHT = 1000;
+
 let partHeight = 200;
 
 // Scene Props & Values:
@@ -213,9 +216,11 @@ updateSceneUI = (sceneBuildings) => {
     if (sceneBuildings == null || sceneBuildings.length < 1){
         document.querySelector("#sceneView").hidden = true;
         document.querySelector("#emptyStateMessage").hidden = false;
+        document.querySelector("#fullScreenBtn").hidden = true;
     } else {
         document.querySelector("#sceneView").hidden = false;
         document.querySelector("#emptyStateMessage").hidden = true;
+        document.querySelector("#fullScreenBtn").hidden = false;
 
         let processedBuildings = findVisibleBuildings(sceneBuildings);
 
@@ -237,7 +242,7 @@ updateSceneUI = (sceneBuildings) => {
             sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
         }
 
-        document.querySelector("#heightDefiner").style.height = `${tallestBuilding * (partHeight)}px`;
+        document.querySelector("#heightDefiner").style.height = `${Math.max(MINIMUM_SCENE_HEIGHT, tallestBuilding * (partHeight))}px`;
         let sceneWidth = document.querySelector("#sceneView").scrollWidth;
         let sceneHeight = document.querySelector("#sceneView").scrollHeight;
         document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
@@ -433,6 +438,25 @@ let generateRandomScene = () => {
 
     this.buildings().length = 0;
     buildings.push(...randomBuildings);
+}
+
+let expandSceneToggle = (btn) => {
+    let scene = document.querySelector("#sceneView");
+    if (btn.getAttribute("data-status") === "normal"){
+        scene.style.height = "100vh";
+        btn.querySelector("#fullScreenBtnIcon").classList = "fas fa-compress-alt fa-lg";
+        btn.querySelector("#fullScreenBtnTxt").innerText = "COMPACT";
+        btn.setAttribute("data-status", "expanded");
+        document.querySelector("body").classList.toggle("scroll-lock", true);
+        window.scrollTo({top:0});
+    } else if (btn.getAttribute("data-status") === "expanded") {
+        scene.style.height = `${DEFAULT_SCENE_HEIGHT}px`;
+        scene.scrollTo({top:scene.scrollHeight});
+        btn.querySelector("#fullScreenBtnIcon").classList = "fas fa-expand-alt fa-lg";
+        btn.querySelector("#fullScreenBtnTxt").innerText = "EXPAND";
+        btn.setAttribute("data-status", "normal");
+        document.querySelector("body").classList.toggle("scroll-lock", false);
+    }
 }
 
 window.onload = initialize();
