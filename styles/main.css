@@ -14,6 +14,12 @@
     --building-part-width: 250px;
     --building-roof-height: 45px;
 
+    --standard-roof-offsetX: -20px;
+    --standard-roof-offsetY: 38px;
+
+    --office-roof-offsetY: 85px;
+    --office-roof-offsetX: -15px;
+
     --ground-height: 40px;
     --ground-color: #34495E;
 }
@@ -84,8 +90,12 @@ html, body {
     width: var(--building-part-width);
 }
 
-#sceneView .buildingContainer .building-part #building-roof{
-    transform: translate(-20px, calc(var(--building-part-height) - 38px));
+#sceneView .buildingContainer[data-buildingType="standard"] .building-part #building-roof{
+    transform: translate(var(--standard-roof-offsetX), calc(var(--building-part-height) - var(--standard-roof-offsetY)));
+}
+
+#sceneView .buildingContainer[data-buildingType="office"] .building-part #building-roof{
+    transform: translate(var(--office-roof-offsetX), calc(var(--building-part-height) - var(--office-roof-offsetY)));
 }
 
 #sceneView #groundPart {
@@ -178,8 +188,12 @@ html, body {
     z-index: 1;
 }
 
-#buildingPreview .buildingContainer .building-part #building-roof{
-    transform: translate(-20px, 6px);
+#buildingPreview .buildingContainer[data-buildingType="standard"] .building-part #building-roof{
+    transform: translate(var(--standard-roof-offsetX), 6px);
+}
+
+#buildingPreview .buildingContainer[data-buildingType="office"] .building-part #building-roof{
+    transform: translate(var(--office-roof-offsetX), -40px);
 }
 
 #buildingEditorPanel #buildingTypeContainer {

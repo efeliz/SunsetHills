@@ -161,6 +161,7 @@ generateBuilding = (params) => {
     let building = template.querySelector("#buildingContainer");
     
     building.setAttribute("data-buildingID", params.id);
+    building.setAttribute("data-buildingType", buildingType);
     building.setAttribute("data-buildingHeight", params.height);
     building.setAttribute("data-sunsetVisible", buildingVisible);
     if (params.xPos){
