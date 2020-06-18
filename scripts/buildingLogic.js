@@ -88,7 +88,7 @@ findVisibleBuildings = (buildings) => {
 
     if (buildings.length > 0){
         sunset_visible = [buildings[0].height];
-        tallest = buildings[0].height;
+        tallestBuilding = buildings[0].height;
         buildings[0].sunsetVisible = true;
     }
 
@@ -96,9 +96,9 @@ findVisibleBuildings = (buildings) => {
         let bldgHeight = buildings[b].height;
         for (var v = 0; v < sunset_visible.length; v++){
             let visible = sunset_visible[v];
-            if ((bldgHeight > visible) && (bldgHeight > tallest)){
+            if ((bldgHeight > visible) && (bldgHeight > tallestBuilding)){
                 sunset_visible.push(bldgHeight);
-                tallest = bldgHeight;
+                tallestBuilding = bldgHeight;
                 buildings[b].sunsetVisible = true;
             }
         }
@@ -201,6 +201,7 @@ generateBuilding = (params) => {
 clearSceneView = () => {
     document.querySelector("#sceneView").innerHTML = "";
     let baseItems = document.querySelector("#blankSceneTemplate").content.cloneNode(true);
+    document.querySelector("#sceneView").appendChild(baseItems.querySelector("#sceneBG"));
     document.querySelector("#sceneView").appendChild(baseItems.querySelector("#heightDefiner"));
     document.querySelector("#sceneView").appendChild(baseItems.querySelector("#groundPart"));
 }
@@ -235,11 +236,18 @@ updateSceneUI = (sceneBuildings) => {
             let sceneContainer = document.querySelector("#sceneView");
             sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
         }
-        document.querySelector("#heightDefiner").style.height = `${tallestBuilding * partHeight}px`;
+        
+        document.querySelector("#heightDefiner").style.height = `${tallestBuilding * (partHeight)}px`;
         let sceneWidth = document.querySelector("#sceneView").scrollWidth;
         let sceneHeight = document.querySelector("#sceneView").scrollHeight;
         document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
         document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
+
+        let sceneBG = document.querySelector("#sceneBG");
+        sceneBG.style.height = `${sceneHeight + 40}px`;
+        sceneBG.style.width = `${sceneWidth + buildingSpace}px`;
+
+        sceneBG.querySelector("#sceneBGStars").style.width = `${sceneWidth + buildingSpace}px`;
     
         let foundBuildings = document.querySelectorAll("#sceneView .buildingContainer");
         let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
