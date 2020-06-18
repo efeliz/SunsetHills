@@ -236,7 +236,7 @@ updateSceneUI = (sceneBuildings) => {
             let sceneContainer = document.querySelector("#sceneView");
             sceneContainer.insertAdjacentElement("afterbegin", generatedBuilding);
         }
-        
+
         document.querySelector("#heightDefiner").style.height = `${tallestBuilding * (partHeight)}px`;
         let sceneWidth = document.querySelector("#sceneView").scrollWidth;
         let sceneHeight = document.querySelector("#sceneView").scrollHeight;
