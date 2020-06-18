@@ -43,19 +43,6 @@ var buildingEditor = {
                     "prefix": "orange"
                 }
             ]
-        },
-        {
-            "title": "Office",
-            "colors": [
-                {
-                    "code": "#E26A6A",
-                    "prefix": "red"
-                },
-                {
-                    "code": "#FABE58",
-                    "prefix": "orange"
-                }
-            ]
         }
     ],
     selectedBuildingIndex: DEFAULT_BUILDING_INDEX,
@@ -232,7 +219,7 @@ updateSceneUI = (sceneBuildings) => {
         document.querySelector("#groundPart").style.top = `${sceneHeight + 40}px`;
         document.querySelector("#groundPart").style.width = `${sceneWidth + buildingSpace}px`;
     
-        let foundBuildings = document.querySelectorAll(".buildingContainer");
+        let foundBuildings = document.querySelectorAll("#sceneView .buildingContainer");
         let groundTopPosition = document.querySelector("#groundPart").getBoundingClientRect().top;
     
         foundBuildings.forEach(bldg => {
@@ -380,6 +367,42 @@ let updateRandomizerValue = (name, newVal) => {
     }
 
     setRandomizerUI();
+}
+
+let generateRandomInt = (min, max) => {
+    //The maximum is inclusive and the minimum is inclusive
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let generateRandomScene = () => {
+    let maxBuildingHeight = randomizerOpt.maxHeight;
+    let minBuildingHeight = randomizerOpt.minHeight;
+    let buildingCount = randomizerOpt.buildingCount;
+    
+    var randomBuildings = [];
+    var randomBuildingType = 0;
+    var randomColorIndex = 0;
+    var randomBuildingHeight = 0;
+
+    for (b=0; b < buildingCount; b++){
+        // generate random values for building
+        randomBuildingType = generateRandomInt(0, buildingEditor.availableBuildings.length - 1);
+        randomColorIndex = generateRandomInt(0, buildingEditor.availableBuildings[randomBuildingType].colors.length - 1);
+        randomBuildingHeight = generateRandomInt(minBuildingHeight, maxBuildingHeight);
+
+        let newBuilding = new building({
+            type: buildingEditor.availableBuildings[randomBuildingType].title.toLowerCase(),
+            height: randomBuildingHeight,
+            color: buildingEditor.availableBuildings[randomBuildingType].colors[randomColorIndex].prefix
+        });
+
+        randomBuildings.push(newBuilding);
+    }
+
+    this.buildings().length = 0;
+    buildings.push(...randomBuildings);
 }
 
 window.onload = initialize();
