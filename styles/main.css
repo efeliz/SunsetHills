@@ -189,7 +189,7 @@ html, body {
 }
 
 #buildingPreview .buildingContainer[data-buildingType="standard"] .building-part #building-roof{
-    transform: translate(var(--standard-roof-offsetX), 6px);
+    transform: translate(var(--standard-roof-offsetX), 7px);
 }
 
 #buildingPreview .buildingContainer[data-buildingType="office"] .building-part #building-roof{
