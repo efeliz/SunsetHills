@@ -41,6 +41,27 @@ var buildingEditor = {
                 {
                     "code": "#FABE58",
                     "prefix": "orange"
+                },
+                {
+                    "code": "#3FC380",
+                    "prefix": "green"
+                },
+                {
+                    "code": "#89C4F4",
+                    "prefix": "blue"
+                }
+            ]
+        },
+        {
+            "title": "Office",
+            "colors": [
+                {
+                    "code": "#FF993B",
+                    "prefix": "cf"
+                },
+                {
+                    "code": "#03C9A9",
+                    "prefix": "logi"
                 }
             ]
         }
