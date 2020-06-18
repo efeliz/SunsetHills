@@ -246,9 +246,7 @@ html, body {
     cursor: pointer;
 }
 
-#buildingEditorPanel .standardBtn {
-    margin-top: 0.5rem;
-}
+#buildingEditorPanel .standardBtn {}
 
 #buildingEditorPanel #buildingHeightTextField {
     margin-top: 0.5rem;
@@ -271,6 +269,35 @@ html, body {
 
 /* Building Editor */
 
+/* RANDOMIZER */
+
+#randomizerPanel .formItem {
+    width: 100%;
+    height: max-content;
+
+    display: flex;
+    flex-basis: 50%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#randomizerPanel .formItem:not(:first-of-type){
+    margin-top: 0.5rem;
+}
+
+#randomizerPanel .formItem .horizontal-slider {
+    margin-left: 1rem;
+}
+
+#randomizerPanel .standard-text-field {
+    height: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* RANDOMIZER */
+
 /* OTHER/MISC. */
 .standardBtn {
     background-color: var(--primary-color);
@@ -285,6 +312,8 @@ html, body {
 
     border: none;
     outline: none;
+
+    margin-top: 0.5rem;
 }
 
 .standard-text-field {

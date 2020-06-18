@@ -63,6 +63,17 @@ var buildingEditor = {
     buildingHeight: DEFAULT_BUILDING_HEIGHT
 };
 
+// RANDOMIZER PROPS:
+const DEFAULT_RANDOM_MAX_HEIGHT = 10;
+const DEFAULT_RANDOM_MIN_HEIGHT = 1;
+const DEFAULT_RANDOM_MAX_BUILDING_COUNT = 5;
+
+let randomizerOpt = {
+    maxHeight: DEFAULT_RANDOM_MAX_HEIGHT,
+    minHeight: DEFAULT_RANDOM_MIN_HEIGHT,
+    maxBuildings: DEFAULT_RANDOM_MAX_BUILDING_COUNT
+};
+
 findVisibleBuildings = (buildings) => {
     var sunset_visible = [];
     tallestBuilding = 0;
@@ -236,6 +247,7 @@ updateSceneUI = (sceneBuildings) => {
 let initialize = () => {
     updateSceneUI();
     setEditorUI();
+    setRandomizerUI();
 }
 
 setEditorUI = () => {
@@ -306,7 +318,6 @@ setEditorUI = () => {
     } else {
         document.querySelector("#storyLabel").innerText = "Stories";
     }
-    
 }
 
 let buildingTypeChanged = (change) => {
@@ -347,6 +358,16 @@ let addBuildingToScene = () => {
     buildingEditor.buildingHeight = DEFAULT_BUILDING_HEIGHT;
 
     setEditorUI();
+}
+
+let setRandomizerUI = () => {
+    document.querySelector("#randomMaxHeightField").value = randomizerOpt.maxHeight;
+    document.querySelector("#randomMinHeightField").value = randomizerOpt.minHeight;
+    document.querySelector("#randomBuildingCountField").value = randomizerOpt.maxBuildings;
+
+    document.querySelector("#randomMaxHeightSlider").value = randomizerOpt.maxHeight;
+    document.querySelector("#randomMinHeightSlider").value = randomizerOpt.minHeight;
+    document.querySelector("#randomBuildingCountSlider").value = randomizerOpt.maxBuildings;
 }
 
 window.onload = initialize();
