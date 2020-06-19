@@ -394,9 +394,17 @@ let setRandomizerUI = () => {
 
 let updateRandomizerValue = (name, newVal) => {
     if (name === "maxHeight"){
-        randomizerOpt.maxHeight = newVal;
+        if (newVal < randomizerOpt.minHeight){
+            alert("Nice try! The maximum height can't be less than your minimum height.");
+        } else {
+            randomizerOpt.maxHeight = newVal;
+        }
     } else if (name === "minHeight"){
-        randomizerOpt.minHeight = newVal;
+        if (newVal > randomizerOpt.maxHeight){
+            alert("Nice try! The minimum height can't be greater than your maximum height.");
+        } else {
+            randomizerOpt.minHeight = newVal;
+        }
     } else if (name === "buildingCount"){
         randomizerOpt.buildingCount = newVal;
     }
