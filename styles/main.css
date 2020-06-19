@@ -295,6 +295,10 @@ body.scroll-lock {
     z-index: 1;
 }
 
+#buildingPreview .buildingContainer[data-buildingType="office"] {
+    margin-top: 3rem;
+}
+
 #buildingPreview .buildingContainer[data-buildingType="standard"] .building-part #building-roof{
     transform: translate(var(--standard-roof-offsetX), 7px);
 }
