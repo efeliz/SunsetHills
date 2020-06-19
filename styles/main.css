@@ -4,6 +4,7 @@
     /* GLOBAL CSS PROPS */
 
     --primary-color: #446cb3;
+    --primary-btn-press-color: #34495e;
 
     --results-yellow-color: #f9bf3b;
     --results-green-color: #3FC380;
@@ -227,6 +228,7 @@ body.scroll-lock {
     padding: 0.75rem;
 
     border-radius: 5px;
+    position: relative;
 }
 
 #resultsContainer #resultsContent .resultItemContainer:not(:first-child){
@@ -249,6 +251,28 @@ body.scroll-lock {
 
 #resultsContainer #resultsContent #visibleBuildingResultContainer {
     background-color: var(--results-green-color);
+}
+
+#resultsContainer #visibleBuildingResultContainer #visibleBuildingInfoBtn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.3rem;
+
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#resultsContainer #visibleBuildingResultContainer #visibleBuildingInfoBtn:hover {
+    cursor: pointer;
+}
+
+#resultsContainer #visibleBuildingResultContainer #visibleBuildingInfoBtn i {
+    color: white;
+}
+
+#resultsContainer #visibleBuildingResultContainer #visibleBuildingInfoBtn:hover i {
+    color: var(--primary-btn-press-color);
 }
 
 #resultsContainer #resultsContent #tallestBuildingResultContainer {
@@ -493,7 +517,7 @@ body.scroll-lock {
 
 .standardBtn:hover {
     cursor: pointer;
-    background-color: #34495e;
+    background-color: var(--primary-btn-press-color);
 }
 
 .standardBtn.iconBtn {

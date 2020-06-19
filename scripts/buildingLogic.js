@@ -483,4 +483,10 @@ let clearScene = () => {
     buildings.splice(0, buildings().length);
 }
 
+let revealInfo = (name) => {
+    if (name == "sunset-visible"){
+        alert("Full color buildings represent those that are sunset visible, whereas, the grayed out transparent buildings are blocked and not sunset visible.");
+    }
+}
+
 window.onload = initialize();
