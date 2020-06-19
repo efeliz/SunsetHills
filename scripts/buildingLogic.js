@@ -223,11 +223,13 @@ updateSceneUI = (sceneBuildings) => {
     clearSceneView();
 
     if (sceneBuildings == null || sceneBuildings.length < 1){
+        document.querySelector("body").setAttribute("data-sceneVisible", "false");
         document.querySelector("#sceneView").hidden = true;
         document.querySelector("#emptyStateMessage").hidden = false;
         document.querySelector("#fullScreenBtn").hidden = true;
         document.querySelector("#resultsContainer").hidden = true;
     } else {
+        document.querySelector("body").setAttribute("data-sceneVisible", "true");
         document.querySelector("#sceneView").hidden = false;
         document.querySelector("#emptyStateMessage").hidden = true;
         document.querySelector("#fullScreenBtn").hidden = false;
