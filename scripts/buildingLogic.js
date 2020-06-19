@@ -87,6 +87,7 @@ let randomizerOpt = {
 
 findVisibleBuildings = (buildings) => {
     var sunset_visible = [];
+    visibleBuildings = 0;
     tallestBuilding = 0;
 
     if (buildings.length > 0){
@@ -103,6 +104,7 @@ findVisibleBuildings = (buildings) => {
                 sunset_visible.push(bldgHeight);
                 tallestBuilding = bldgHeight;
                 buildings[b].sunsetVisible = true;
+                visibleBuildings += 1;
             }
         }
     }
@@ -136,6 +138,13 @@ startProcess = () => {
     } else {
         alert("buildings field empty");
     }
+}
+
+updateMetricsUI = () => {
+    // sets values for: number of buildings, sunset visible buildings count, tallest building height
+    document.querySelector("#numBuildingResultVal").innerText = buildings().length;
+    document.querySelector("#visibleBuildingResultVal").innerText = visibleBuildings;
+    document.querySelector("#tallestBuildingResultVal").innerText = tallestBuilding;
 }
 
 generateBuilding = (params) => {
@@ -217,10 +226,12 @@ updateSceneUI = (sceneBuildings) => {
         document.querySelector("#sceneView").hidden = true;
         document.querySelector("#emptyStateMessage").hidden = false;
         document.querySelector("#fullScreenBtn").hidden = true;
+        document.querySelector("#resultsContainer").hidden = true;
     } else {
         document.querySelector("#sceneView").hidden = false;
         document.querySelector("#emptyStateMessage").hidden = true;
         document.querySelector("#fullScreenBtn").hidden = false;
+        document.querySelector("#resultsContainer").hidden = false;
 
         let processedBuildings = findVisibleBuildings(sceneBuildings);
 
@@ -263,6 +274,7 @@ updateSceneUI = (sceneBuildings) => {
         });
     
         document.querySelector("#sceneView").scrollTo({top: sceneHeight});
+        updateMetricsUI();
     }
 }
 

@@ -5,6 +5,11 @@
 
     --primary-color: #446cb3;
 
+    --results-yellow-color: #f9bf3b;
+    --results-green-color: #3FC380;
+    --results-blue-color: #89C4F4;
+    --results-red-color: #E26A6A;
+
     --navbar-color: rgba(0, 0, 0, 0.75);
     --navbar-height: 3rem;
 
@@ -210,6 +215,44 @@ body.scroll-lock {
     height: 100%;
 
     text-align: center;
+}
+
+#resultsContainer #resultsContent .resultItemContainer {
+    margin-top: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    max-width: 70%;
+    height: max-content;
+    padding: 0.75rem;
+
+    border-radius: 5px;
+}
+
+#resultsContainer #resultsContent .resultItemContainer:not(:first-child){
+    margin-top: 1rem;
+}
+
+#resultsContainer #resultsContent .resultItemContainer:last-child {
+    margin-bottom: 0.5rem;
+}
+
+#resultsContainer #resultsContent .resultItemContainer .resultValueText {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#resultsContainer #resultsContent #numBuildingResultContainer {
+    background-color: var(--results-yellow-color);
+    /* color: */
+}
+
+#resultsContainer #resultsContent #visibleBuildingResultContainer {
+    background-color: var(--results-green-color);
+}
+
+#resultsContainer #resultsContent #tallestBuildingResultContainer {
+    background-color: var(--results-red-color);
 }
 
 /* RESULTS VIEW */
