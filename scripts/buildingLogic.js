@@ -445,7 +445,7 @@ let expandSceneToggle = (btn) => {
     if (btn.getAttribute("data-status") === "normal"){
         scene.style.height = "100vh";
         btn.querySelector("#fullScreenBtnIcon").classList = "fas fa-compress-alt fa-lg";
-        btn.querySelector("#fullScreenBtnTxt").innerText = "COMPACT";
+        btn.querySelector("#fullScreenBtnTxt").innerText = "SHRINK";
         btn.setAttribute("data-status", "expanded");
         document.querySelector("body").classList.toggle("scroll-lock", true);
         window.scrollTo({top:0});
