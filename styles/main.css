@@ -183,6 +183,37 @@ body.scroll-lock {
 }
 /* SCENE VIEW */
 
+/* RESULTS VIEW */
+
+#resultsContainer {
+    position: relative;
+
+    width: 100%;
+    max-width: 90vw;
+
+    min-height: 5rem;
+    height: max-content;
+
+    background-color: var(--ground-color);
+    color: white;
+    border-radius: 5px;
+
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#resultsContainer #resultsContent {
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+}
+
+/* RESULTS VIEW */
+
 /* PANELS */
 #panels-container {
     width: 90%;
