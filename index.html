@@ -34,18 +34,20 @@
         <div id="resultsContainer">
             <div id="resultsContent">
                 <h2 class="panel-title">Key Metrics</h2>
-                <div id="numBuildingResultContainer" class="resultItemContainer">
-                    <h2 id="numBuildingResultVal" class="resultValueText">0</h2>
-                    <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Number of Buildings</h3>
-                </div>
-                <div id="visibleBuildingResultContainer" class="resultItemContainer">
-                    <button id="visibleBuildingInfoBtn" onclick="revealInfo('sunset-visible');"><i class="fas fa-info-circle fa-2x"></i></button>
-                    <h2 id="visibleBuildingResultVal" class="resultValueText">0</h2>
-                    <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Sunset Visible Buildings</h3>
-                </div>
-                <div id="tallestBuildingResultContainer" class="resultItemContainer">
-                    <h2 id="tallestBuildingResultVal" class="resultValueText">1</h2>
-                    <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Tallest Building Height</h3>
+                <div id="resultItemsWrapper">
+                    <div id="numBuildingResultContainer" class="resultItemContainer">
+                        <h2 id="numBuildingResultVal" class="resultValueText">0</h2>
+                        <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Number of Buildings</h3>
+                    </div>
+                    <div id="visibleBuildingResultContainer" class="resultItemContainer">
+                        <button id="visibleBuildingInfoBtn" onclick="revealInfo('sunset-visible');"><i class="fas fa-info-circle fa-2x"></i></button>
+                        <h2 id="visibleBuildingResultVal" class="resultValueText">0</h2>
+                        <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Sunset Visible Buildings</h3>
+                    </div>
+                    <div id="tallestBuildingResultContainer" class="resultItemContainer">
+                        <h2 id="tallestBuildingResultVal" class="resultValueText">1</h2>
+                        <h3 class="panel-section-heading heading-bottom" style="margin-top: 0;">Tallest Building Height</h3>
+                    </div>
                 </div>
                 <button id="clearSceneBtn" class="standardBtn iconBtn" onclick="clearScene()">
                     <i class="fas fa-trash fa-lg" style="display: inline;"></i>

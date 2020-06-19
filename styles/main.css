@@ -218,12 +218,29 @@ body.scroll-lock {
     text-align: center;
 }
 
-#resultsContainer #resultsContent .resultItemContainer {
-    margin-top: 0.5rem;
+#resultsContainer #resultItemsWrapper {
+    width: 90%;
+    height: max-content;
+
+    margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
 
-    max-width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+#resultsContainer #resultsContent .resultItemContainer {
+    /* margin-top: 0.5rem; */
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 100%;
     height: max-content;
     padding: 0.75rem;
 
@@ -236,7 +253,7 @@ body.scroll-lock {
 }
 
 #resultsContainer #resultsContent .resultItemContainer:last-child {
-    margin-bottom: 0.5rem;
+    /* margin-bottom: 0.5rem; */
 }
 
 #resultsContainer #resultsContent .resultItemContainer .resultValueText {
