@@ -404,7 +404,8 @@ let setRandomizerUI = () => {
     document.querySelector("#randomBuildingCountSlider").value = randomizerOpt.buildingCount;
 }
 
-let updateRandomizerValue = (name, newVal) => {
+let updateRandomizerValue = (name, val) => {
+    let newVal = parseInt(val);
     if (name === "maxHeight"){
         if (newVal < randomizerOpt.minHeight){
             alert("Nice try! The maximum height can't be less than your minimum height.");
