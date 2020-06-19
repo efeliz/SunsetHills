@@ -252,6 +252,11 @@ body.scroll-lock {
 }
 
 #resultsContainer #resultsContent #tallestBuildingResultContainer {
+    background-color: var(--results-blue-color);
+}
+
+#resultsContainer #clearSceneBtn {
+    margin-top: 1rem;
     background-color: var(--results-red-color);
 }
 
@@ -489,6 +494,19 @@ body.scroll-lock {
 .standardBtn:hover {
     cursor: pointer;
     background-color: #34495e;
+}
+
+.standardBtn.iconBtn {
+    padding: 0.5rem 0.75rem;
+    width: max-content;
+    height: 2.5rem;
+    text-align: center;
+}
+
+.standardBtn.iconBtn h3 {
+    font-weight: 600;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
 }
 
 .standard-text-field {

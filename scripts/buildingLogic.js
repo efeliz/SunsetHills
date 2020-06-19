@@ -479,4 +479,8 @@ let expandSceneToggle = (btn) => {
     }
 }
 
+let clearScene = () => {
+    buildings.splice(0, buildings().length);
+}
+
 window.onload = initialize();
